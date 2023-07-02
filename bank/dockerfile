@@ -1,0 +1,10 @@
+FROM python:3
+WORKDIR /app
+COPY . .
+RUN pip3 install jinja2
+RUN pip3 install thrift-tools
+RUN pip install paho-mqtt
+#RUN apt update
+#RUN apt-get install mosquitto -y
+
+CMD [ "python3", "gen-py/rpc/bank.py" ]

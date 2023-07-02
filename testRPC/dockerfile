@@ -1,0 +1,5 @@
+FROM python:3
+WORKDIR /app
+COPY . .
+RUN pip3 install thrift-tools
+CMD [ "python3", "gen-py/rpc/test.py" ]

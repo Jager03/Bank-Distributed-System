@@ -1,0 +1,70 @@
+services:
+  bank1:
+    build:
+      context: ./bank
+      dockerfile: dockerfile
+    container_name: bank_1
+    ports:
+      - 8080:80
+    networks:
+      - NET_1
+    environment:
+      NAME: 'bank_1'
+      NUM_BANK: 3
+      BRUTO_VAL: 12000
+      BROKE: 0
+      ROLE: 1
+
+  bank2:
+    build:
+      context: ./bank
+      dockerfile: dockerfile
+    container_name: bank_2
+    ports:
+      - 8082:80
+    networks:
+      - NET_1
+    environment:
+      NAME: 'bank_2'
+      NUM_BANK: 3
+      BRUTO_VAL: 10000
+      ROLE: 2
+
+  bank3:
+    build:
+      context: ./bank
+      dockerfile: dockerfile
+    container_name: bank_3
+    ports:
+      - 8084:80
+    networks:
+      - NET_1
+    environment:
+      NAME: 'bank_3'
+      NUM_BANK: 3
+      BRUTO_VAL: 5000
+      ROLE: 0
+
+  borse:
+    build:
+      context: ./borse
+      dockerfile: dockerfile
+    container_name: borse_1
+    ports:
+      - 8081:80
+    networks:
+      - NET_1
+  # test:
+  #   build:
+  #     context: ./testRPC
+  #     dockerfile: dockerfile
+  #   container_name: test
+  #   ports:
+  #     - 8083:80
+  #   networks:
+  #     - NET_1
+
+networks:
+  NET_1:
+    name: network_bank_system
+    driver: bridge
